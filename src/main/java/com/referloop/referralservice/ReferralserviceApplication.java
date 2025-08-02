@@ -10,4 +10,5 @@ public class ReferralserviceApplication {
 		SpringApplication.run(ReferralserviceApplication.class, args);
 	}
 
+
 }
