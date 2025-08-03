@@ -1,10 +1,11 @@
 package com.referloop.referralservice.controller;
 
-
 import com.referloop.referralservice.model.ReferralRequest;
 import com.referloop.referralservice.repository.ReferralRequestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,15 @@ public class ReferralController {
     @GetMapping("/all")
     public List<ReferralRequest> getAllReferrals() {
         return referralRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getReferralById(@PathVariable String id) {
+        return referralRepo.findById(id)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .body("Referral not found"));
     }
 
     // POST /referrals/accept/{id}
