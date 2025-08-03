@@ -16,4 +16,7 @@ public class ReferralRequest {
     private String toUserId;
     private String jobRole;
     private String status; // Pending, Accepted
+    private String jobId;
+    private String jobLink;
+    private String resumeLink;
 }
